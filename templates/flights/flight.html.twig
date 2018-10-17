@@ -10,39 +10,45 @@
         <li class="breadcrumb-item active">Vols</li>
     </ol>
     <div class="row">
+        <div class="col-2">
+            <button class="btn btn-primary btn-block" data-toggle="modal" data-target="#addModal">Ajouter un passager
+            </button>
+        </div>
+    </div>
+    <div class="row" style="margin-top: 20px">
         <div class="col-lg-12">
             <div class="card mb-3">
                 <div class="card-header">
-                    <i class="fa fa-table"></i> LISTE DES VOLS
+                    <i class="fa fa-table"></i> LISTE DES PASSAGERS
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                             <tr>
-                                <th>Départ</th>
-                                <th>Arrivé</th>
-                                <th>Date départ</th>
-                                <th>Date arrivé</th>
+                                <th>Nom</th>
+                                <th>Prénom</th>
+                                <th>Date réservation</th>
+                                <th>Numéro de place</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
                             <tfoot>
                             <tr>
-                                <th>Départ</th>
-                                <th>Arrivé</th>
-                                <th>Date départ</th>
-                                <th>Date arrivé</th>
+                                <th>Nom</th>
+                                <th>Prénom</th>
+                                <th>Date réservation</th>
+                                <th>Numéro de place</th>
                                 <th>Action</th>
                             </tr>
                             </tfoot>
                             <tbody>
-                            {% for flight in flights %}
+                            {% for passenger in flight.passengers %}
                                 <tr>
-                                    <td>{{ flight.departure }}</td>
-                                    <td>{{ flight.arrival }}</td>
-                                    <td>{{ flight.departureDate }}</td>
-                                    <td>{{ flight.arrivalDate }}</td>
+                                    <td>{{ passenger.firstname }}</td>
+                                    <td>{{ passenger.lastname }}</td>
+                                    <td></td>
+                                    <td></td>
                                     <td>
                                         <a class="buttonicon" data-toggle="modal" data-target="#updateProduct"><i
                                                     class="fa fa-edit"></i></a>
@@ -56,6 +62,53 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                {{ form_start(form) }}
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ajouter un voyage</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-6">
+                            {{ form_row(form.departure, { 'attr': {'class': 'form-control', 'placeholder': "Départ"}}) }}
+                        </div>
+                        <div class="col-6">
+                            {{ form_row(form.arrival, { 'attr': {'class': 'form-control', 'placeholder': "Arrivé"}}) }}
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 5px">
+                        <div class="col-6">
+                            {{ form_row(form.departureDate, { 'attr': {'class': 'form-control', 'placeholder': "Date départ"}}) }}
+                        </div>
+                        <div class="col-6">
+                            {{ form_row(form.arrivalDate, {'attr': {'class': 'form-control', 'placeholder': "Date arrivé"}}) }}
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 5px">
+                        <div class="col-6">
+                            {{ form_row(form.airplane, { 'attr': {'class': 'form-control', 'placeholder': "Avion"}}) }}
+                        </div>
+                        <div class="col-6">
+                            {{ form_row(form.pilote, {'attr': {'class': 'form-control', 'placeholder': "Pilote"}}) }}
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Annuler</button>
+                    <button class="btn btn-primary btn-block" type="submit">Ajouter</button>
+                </div>
+            </div>
+            {{ form_end(form) }}
         </div>
     </div>
 {% endblock %}

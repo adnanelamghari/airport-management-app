@@ -9,26 +9,12 @@
         </li>
         <li class="breadcrumb-item active">Vols</li>
     </ol>
-    {{ form_start(form) }}
     <div class="row">
         <div class="col-2">
-            {{ form_row(form.departure, { 'attr': {'class': 'form-control', 'placeholder': "First name"}}) }}
+            <button class="btn btn-primary btn-block" data-toggle="modal" data-target="#addModal">Ajouter un vol
+            </button>
         </div>
-        <div class="col-2">
-            {{ form_row(form.arrival, { 'attr': {'class': 'form-control', 'placeholder': "First name"}}) }}
-        </div>
-        <div class="col-2">
-            {{ form_row(form.departureDate, { 'attr': {'class': 'form-control'}}) }}
-        </div>
-        <div class="col-2">
-            {{ form_row(form.arrivalDate, {'attr': {'class': 'form-control'}}) }}
-        </div>
-        <div class="col-2">
-            <button class="btn btn-primary btn-block" type="submit">Ajouter</button>
-        </div>
-        <div class="col-2"></div>
     </div>
-    {{ form_end(form) }}
     <div class="row" style="margin-top: 20px">
         <div class="col-lg-12">
             <div class="card mb-3">
@@ -44,6 +30,7 @@
                                 <th>Arrivé</th>
                                 <th>Date départ</th>
                                 <th>Date arrivé</th>
+                                <th>Pilote</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
@@ -53,6 +40,7 @@
                                 <th>Arrivé</th>
                                 <th>Date départ</th>
                                 <th>Date arrivé</th>
+                                <th>Pilote</th>
                                 <th>Action</th>
                             </tr>
                             </tfoot>
@@ -61,8 +49,9 @@
                                 <tr>
                                     <td>{{ flight.departure }}</td>
                                     <td>{{ flight.arrival }}</td>
-                                    <td>{{ flight.departureDate }}</td>
-                                    <td>{{ flight.arrivalDate }}</td>
+                                    <td>{{ flight.departureDate  |localizeddate('long', 'short') }}</td>
+                                    <td>{{ flight.arrivalDate  |localizeddate('long', 'short') }}</td>
+                                    <td>{{ flight.pilote.firstname }} {{ flight.pilote.lastname }}</td>
                                     <td>
                                         <a class="buttonicon" data-toggle="modal" data-target="#updateProduct"><i
                                                     class="fa fa-edit"></i></a>
@@ -76,6 +65,34 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                {{ form_start(form) }}
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ajouter un vol</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row" style="margin-top: 5px">
+                        {{ form_row(form.passenger, {'attr': {'class': 'form-control', 'placeholder': "Pilote"}}) }}
+                    </div>
+                    <div class="row" style="margin-top: 5px">
+                        {{ form_row(form.plase, {'attr': {'class': 'form-control', 'placeholder': "Pilote"}}) }}
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Annuler</button>
+                    <button class="btn btn-primary btn-block" type="submit">Ajouter</button>
+                </div>
+            </div>
+            {{ form_end(form) }}
         </div>
     </div>
 {% endblock %}

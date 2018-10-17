@@ -30,9 +30,21 @@ class User implements UserInterface
      */
     private $email;
 
+
+    /**
+     * @ORM\Column(type="string", length=255, unique=false)
+     * @Assert\NotBlank()
+     */
+    private $firstname;
+
+    /**
+     * @ORM\Column(type="string", length=255, unique=false)
+     * @Assert\NotBlank()
+     */
+    private $lastname;
+
     /**
      * @ORM\Column(type="string", length=255, unique=true)
-     * @Assert\NotBlank()
      */
     private $username;
 
@@ -82,6 +94,43 @@ class User implements UserInterface
     public function setEmail($email)
     {
         $this->email = $email;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->firstname . ' ' . $this->lastname;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFirstname()
+    {
+        return $this->firstname;
+    }
+
+    /**
+     * @param mixed $firstname
+     */
+    public function setFirstname($firstname)
+    {
+        $this->firstname = $firstname;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLastname()
+    {
+        return $this->lastname;
+    }
+
+    /**
+     * @param mixed $lastname
+     */
+    public function setLastname($lastname)
+    {
+        $this->lastname = $lastname;
     }
 
     public function getUsername()
