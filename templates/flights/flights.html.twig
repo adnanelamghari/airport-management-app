@@ -80,12 +80,31 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="row" style="margin-top: 5px">
-                        {{ form_row(form.passenger, {'attr': {'class': 'form-control', 'placeholder': "Pilote"}}) }}
+                    <div class="row">
+                        <div class="col-6">
+                            {{ form_row(form.departure, { 'attr': {'class': 'form-control', 'placeholder': "Départ"}}) }}
+                        </div>
+                        <div class="col-6">
+                            {{ form_row(form.arrival, { 'attr': {'class': 'form-control', 'placeholder': "Arrivé"}}) }}
+                        </div>
                     </div>
                     <div class="row" style="margin-top: 5px">
-                        {{ form_row(form.plase, {'attr': {'class': 'form-control', 'placeholder': "Pilote"}}) }}
+                        <div class="col-6">
+                            {{ form_row(form.departureDate, { 'attr': {'class': 'form-control', 'placeholder': "Date départ"}}) }}
+                        </div>
+                        <div class="col-6">
+                            {{ form_row(form.arrivalDate, {'attr': {'class': 'form-control', 'placeholder': "Date arrivé"}}) }}
+                        </div>
                     </div>
+                    <div class="row" style="margin-top: 5px">
+                        <div class="col-6">
+                            {{ form_row(form.airplane, { 'attr': {'class': 'form-control', 'placeholder': "Avion"}}) }}
+                        </div>
+                        <div class="col-6">
+                            {{ form_row(form.pilote, {'attr': {'class': 'form-control', 'placeholder': "Pilote"}}) }}
+                        </div>
+                    </div>
+
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Annuler</button>
